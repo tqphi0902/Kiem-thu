@@ -1,3 +1,27 @@
+#include <iostream>
+#include <vector>
+#include <cassert>
+
+bool is_prime(int n) {
+    if (n <= 1)
+        return false;
+    for (int i = 2; i * i <= n; ++i) {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+
+int sum_of_primes(const std::vector<int>& numbers, int n) {
+    int sum = 0;
+    for (int i = 0; i < n; ++i) {
+        if (is_prime(numbers[i])) {
+            sum += numbers[i];
+        }
+    }
+    return sum;
+}
+
 void test_sum_of_primes() {
     // Test case for empty vector
     std::vector<int> empty;
@@ -36,4 +60,9 @@ void test_sum_of_primes() {
     assert(sum_of_primes(large_primes, 3) == 2999923);
 
     std::cout << "All test cases passed successfully!" << std::endl;
+}
+
+int main() {
+    test_sum_of_primes();
+    return 0;
 }
